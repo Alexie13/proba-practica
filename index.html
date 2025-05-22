@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpiada de Biologie - Proba Practică</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Variabile CSS preluate din primul site */
+        :root {
+            --primary-color: #00e6c0;
+            --secondary-color: #00b3a1;
+            --background-color: #021726;
+            --dark-color: #01111b;
+            --text-color: #ffffff;
+            --card-background: rgba(0, 230, 192, 0.1);
+            --card-border: rgba(0, 230, 192, 0.3);
+            --orange-neon: #FF9500;
+            --orange-dark: #FF5E3A;
+            --yellow-neon: #FFD60A;
+            --yellow-dark: #FFC107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            height: 60px;
+            background-color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Buton Acasă - Design îmbunătățit și centrat */
+        .home-button {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--dark-color);
+            border: none;
+            padding: 6px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 230, 192, 0.3);
+            text-transform: uppercase;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .home-button:hover {
+            transform: translateY(calc(-50% - 3px)) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 230, 192, 0.5);
+        }
+
+        .home-button:active {
+            transform: translateY(calc(-50% + 1px));
+        }
+
+        .home-button i {
+            font-size: 1.1rem;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-top: 80px;
+            padding: 20px;
+            transition: margin-left 0.4s ease;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* Card pentru conținut */
+        .content-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 230, 192, 0.5);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .subsection-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* Subtitluri pentru secțiuni cu litere (A., B., C.) */
+        h5 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin: 1.2rem 0 0.8rem;
+            font-weight: 600;
+        }
+
+        h6 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.6rem;
+            font-weight: 600;
+        }
+
+        /* Text formatat */
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Highlight pentru termeni importanți */
+        .highlight {
+            color: var(--yellow-neon);
+            font-weight: 600;
+        }
+
+        /* Spațiu pentru imagini */
+        .image-placeholder {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%; /* Raport 16:9, poți ajusta în funcție de nevoie */
+            background-color: #ffffff; /* Fundal alb pentru container */
+            border: 2px dashed var(--primary-color);
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+.alte-pagini {
+            text-decoration: none;
+            color: rgb(240, 166, 17);
+            transition: all 0.3s ease;
+        }
+
+        .alte-pagini:hover {
+            color: var(--yellow-neon);
+        }
+        .image-placeholder img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Păstrează imaginea completă fără tăieri */
+            background-color: #ffffff; /* Fundal alb pentru zonele neacoperite de imagine */
+            display: block;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px dashed var(--orange-neon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            color: var(--orange-neon);
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        /* Brain Decoration */
+        .brain-decoration {
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e6c0'%3E%3Cpath d='M12 2c1.9 0 3.6.8 4.8 2 1.2 1.2 2 2.9 2 4.8 0 3.2-2.2 5.8-5.2 6.6v.6c0 1.1-.9 2-2 2h-.4c-1.1 0-2-.9-2-2v-.6C6.2 14.6 4 12 4 8.8c0-1.9.8-3.6 2-4.8C7.4 2.8 9.1 2 11 2h1zm0 2c-1.3 0-2.5.5-3.4 1.4-.9.9-1.4 2.1-1.4 3.4 0 2.2 1.5 4.1 3.6 4.7.2.1.4.3.4.5v1c0 .6.4 1 1 1h.8c.6 0 1-.4 1-1v-1c0-.2.2-.4.4-.5 2.1-.6 3.6-2.5 3.6-4.7 0-1.3-.5-2.5-1.4-3.4-.9-.9-2.1-1.4-3.4-1.4h-1z'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+            transform: rotate(45deg);
+        }
+
+        /* Responsive design îmbunătățit */
+        @media (max-width: 992px) {
+            .main-content {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .home-button {
+                left: 10px;
+                min-width: 90px;
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .subsection-title {
+                font-size: 1.2rem;
+            }
+            
+            h5 {
+                font-size: 1.1rem;
+            }
+            
+            h6 {
+                font-size: 1rem;
+            }
+            
+            .image-placeholder {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 10px;
+                margin-top: 70px;
+            }
+            
+            .logo h1 {
+                font-size: 1.1rem;
+            }
+            
+            .home-button {
+                left: 5px;
+                min-width: 70px;
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+            
+            .home-button i {
+                font-size: 0.9rem;
+            }
+            
+            .page-title {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .subsection-title {
+                font-size: 1.1rem;
+            }
+            
+            h5 {
+                font-size: 1rem;
+            }
+            
+            h6 {
+                font-size: 0.95rem;
+            }
+            
+            .image-placeholder {
+                height: 200px;
+            }
+            
+            .content-card {
+                padding: 15px;
+            }
+            
+            p, li {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            header {
+                height: 50px;
+            }
+            
+            .logo h1 {
+                font-size: 1rem;
+            }
+            
+            .home-button {
+                min-width: 60px;
+            }
+            
+            
+
+            .main-content {
+                margin-top: 60px;
+                padding: 8px;
+            }
+            
+            .content-card {
+                padding: 12px;
+            }
+            
+            .page-title {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            p, li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brain-decoration"></div>
+    
+    <!-- Header -->
+    <header>
+        <a href="https://alexie13.github.io/biogenius-academy/" class="home-button"><i class="fas fa-home"></i></a>
+        <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#00e6c0" stroke-width="2" />
+                <path d="M30,50 Q40,30 50,50 Q60,70 70,50" fill="none" stroke="#00e6c0" stroke-width="2" />
+                <path d="M30,40 Q50,20 70,40" fill="none" stroke="#00e6c0" stroke-width="2" />
+                <path d="M30,60 Q50,80 70,60" fill="none" stroke="#00e6c0" stroke-width="2" />
+                <path d="M45,35 Q50,30 55,35" fill="none" stroke="#00e6c0" stroke-width="2" />
+                <path d="M45,65 Q50,70 55,65" fill="none" stroke="#00e6c0" stroke-width="2" />
+            </svg>
+            <h1>BIOGENIUS ACADEMY</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2 class="page-title">Olimpiada de Biologie - Proba Practică</h2>
+        
+        <!-- Proba teoretica -->
+        <div class="content-card">
+            <h3 class="section-title">Proba teoretică</h3>
+            
+            <p><b>Descriere:</b> Proba practică de la etapa națională a Olimpiadei de Biologie pentru clasa a IX-a evaluează competențele de laborator ale elevilor, punându-le la încercare atât cunoștințele teoretice, cât și abilitățile practice. Aceasta presupune:</p>
+            
+            <ul>
+                <li><b>Utilizarea echipamentelor de bază:</b> manipularea microscopului (reglarea focalizării și iluminarea), pregătirea montajelor (lamă umedă sau uscată), și folosirea corectă a pipetelor, cilindrilor graduați etc.</li>
+                <li><b>Realizarea de experimente simple:</b> elevii pot efectua teste precum experimentul de osmoză (folosind cartoful sau ouăle) sau evaluarea activității enzimatice (de exemplu, descompunerea amidonului de către amilază). Aceste experimente implică măsurarea și interpretarea variabilelor experimentale.</li>
+                <li><b>Interpretarea și raportarea rezultatelor:</b> se așteaptă organizarea datelor în tabele și grafice, apoi redactarea unui raport scurt care să cuprindă obiectivele, metoda folosită, rezultatele obținute și concluziile trase.</li>
+            </ul>
+            
+            <p>În esență, proba practică testează abilitatea elevului de a aplica metode științifice precise, de a respecta normele de siguranță în laborator și de a comunica clar rezultatele experimentelor efectuate.</p>
+        </div>
+        
+        <!-- Microscopul -->
+        <div class="content-card">
+            <h3 class="section-title">1. Microscopul. Tehnici de laborator.</h3>
+            
+            <h4 class="subsection-title">Microscopul optic</h4>
+            
+            <h5><b>A. Partea mecanică:</b></h5>
+            
+            <p><b>• Structura suport:</b></p>
+            <p>Microscopul este construit pe un stativ (sau picior) care sprijină tot sistemul. Pe acesta se montează tubul optic (care la partea superioară găzduiește ocularul), condensatorul, oglinda și masa pe care se plasează preparatul.</p>
+            <p>Rolul principal este de a susține atât ansamblul optic, cât și preparatul de analizat și sursa de lumină.</p>
+            
+            <p><b>• Fixarea preparatului:</b></p>
+            <p>Clemele flexibile (cunoscute și ca „cavaleri") se atașează pe masa microscopului pentru a fixa preparatul în poziție.</p>
+            
+            <p><b>• Reglarea tubului optic:</b></p>
+            <p>Microscopul are două dispozitive de reglare:</p>
+            <ul>
+                <li>Viza macrometrică: pentru mișcări rapide, ridicarea sau coborârea tubului.</li>
+                <li>Viza micrometrică: pentru ajustări fine, ce asigură precizia imaginii.</li>
+            </ul>
+            <div class="image-placeholder"><img src="prima poza.jpeg"></div>
+            <h5><b>B. Partea optică:</b></h5>
+            
+            <p><b>• Condensatorul:</b></p>
+            <p>Poziționat sub masa microscopului, acesta este alcătuit dintr-un set de lentile convergente care concentrează lumina reflectată de oglindă asupra preparatului.</p>
+            
+            <p><b>• Oglinda:</b></p>
+            <p>Este o piesă mobilă amplasată sub condensator, având o față plană și una convexă (folosită în special cu obiective cu măriri mari, cum ar fi 40×, 90× sau 100×). Rolul său este de a reflecta lumina către condensator și, implicit, pe preparat.</p>
+            
+            <p><b>• Tubul optic și ocularul:</b></p>
+            <p>În partea superioară a tubului găsim ocularul, un sistem de lentile cu măriri variind, de exemplu, între 5× și 15×.</p>
+            
+            <p><b>• Calculul măriri totale:</b></p>
+            <p>Mărirea finală a imaginii se obține prin înmulțirea puterii de mărire a obiectivului cu cea a ocularului.</p>
+            <p>De exemplu, un obiectiv de 20× combinat cu un ocular de 10× oferă o mărire de 200×; un obiectiv de 90× și un ocular de 15× generează o mărire de 1350×.</p>
+            <p>În microscoapele moderne, lungimea optică a tubului este de aproximativ 160 mm, dar formula se reduce la produsul celor două puteri.</p>
+            
+            <p><b>• Obiectivele:</b></p>
+            <p>Acestea sunt montate în partea inferioară a tubului optic, pe un revolver (dispozitiv rotativ ce permite schimbarea rapidă a obiectivelor), și sunt alcătuite dintr-un ansamblu de lentile dispuse în interiorul unui tub cilindric. Valorile gravate (10, 20, 40, 90, 100) indică distanța focală și mărirea lor de bază.</p>
+            <p>Unele microscoape sunt echipate cu obiective de imersie (marcate de regulă cu 90 sau 100), care se folosesc împreună cu un lichid (de obicei ulei de cedru) plasat între obiectiv și preparat, pentru a obține o luminozitate sporită și o imagine mai clară. După utilizare, aceste obiective se curăță cu o cârpă moale îmbibată în benzen.</p>
+            
+            <h5><b>Lupa:</b></h5>
+            <p>Este un instrument optic separat, alcătuit dintr-o lentilă biconvexă montată într-o ramă (metalică sau din plastic).</p>
+            <p>Puterea de mărire a lupei variază, de obicei, între 2× și 20×, iar aceasta este gravată pe montură.</p>
+        </div>
+        
+        <!-- Utilizarea Microscopului -->
+        <div class="content-card">
+            <h3 class="section-title">Utilizarea Microscopului</h3>
+            
+            <p><b>Pregătirea inițială:</b> Înainte de a utiliza microscopul, curăță toate componentele optice (ocularul, tubul optic etc.) cu o cârpă moale și curată.</p>
+            
+            <h4 class="subsection-title">1. Uniformizarea Luminii Câmpului Microscopic</h4>
+            <ul>
+                <li><b>Setările condensatorului și oglindei:</b> Deschide complet diafragma condensatorului și coboară-l cât mai mult posibil pentru ca oglinda – prin partea ei plană – să capteze o cantitate optimă de lumină.</li>
+                <li><b>Ajustarea tubului optic:</b> Asigură-te că revolverul este pe obiectivul cu cea mai mică mărire (de exemplu, 10×). Scoate ocularul și privește prin tub, ajustând oglinda până când obții o imagine clară a unei porțiuni din fereastra luminoasă.</li>
+                <li><b>Verificarea iluminării:</b> Pune din nou ocularul în poziție și verifică uniformitatea luminii. Ridică condensatorul progresiv, până când imaginea inițială dispare și câmpul bucată de vizualizare devine uniform și bine luminos.</li>
+            </ul>
+            
+            <h4 class="subsection-title">2. Fixarea Imaginii Preparatului</h4>
+            <ul>
+                <li><b>Așezarea preparatului:</b> Plasează preparatul pe masa microscopului, în regiunea centrată a orificiului circular, fără a-l fixa imediat cu clemele (cavaleri). Fixează preparatul doar dacă intenționezi să efectuezi observații prelungite sau să desenezi structura detaliată.</li>
+                <li><b>Reglarea distanței:</b> Privește din lateral și ajustează tubul microscopului, coborându-l la aproximativ 4-5 mm de preparat pentru a obține cea mai clară imagine.</li>
+            </ul>
+            
+            <h4 class="subsection-title">3. Observarea Preparatului</h4>
+            <ul>
+                <li><b>Selectarea obiectivului:</b> Începe cu obiectivul cu cea mai mică mărire (de exemplu, 3×, 7× sau 10×) pentru a avea un câmp larg de observație și pentru a identifica zona de interes a structurii.</li>
+                <li><b>Focalizarea imaginii:</b> Privește prin ocular și ajustează focalizarea rapidă cu ajutorul vizei macrometrice până când imaginea preparatului devine clară. În același timp, poți deplasa ușor preparatul manual pentru a obține o vedere completă asupra structurii.</li>
+                <li><b>Analiza detaliată:</b> Odată ce ai localizat zona de interes, analizează imaginea cu atenție (poți folosi cel puțin un ochi în mod concentrat) și reprezintă prin desen aspectele observate.</li>
+                <li><b>Mărirea imaginii:</b> Pentru observări detaliate, rotește revolverul pentru a selecta obiective cu măriri mai mari (20× sau 40×) și ajustează fin imaginea cu viza micrometrică, fără a schimba poziția tubului optic.</li>
+            </ul>
+            
+            <p>BioGenius Academy v-a pregătit următorul <a href="https://alexie13.github.io/membrana-celulara-si-citoplasma/" class="alte-pagini">video:</a></p>
+            <p>Și o scurtă<a href="https://alexie13.github.io/a-doua-filmare-proba-practica/" class="alte-pagini"> reprezentare:</a></p>
+        </div>
+        
+        <!-- Tehnica obținerii preparatelor vegetale proaspete -->
+        <div class="content-card">
+            <h3 class="section-title">Tehnica obținerii preparatelor vegetale proaspete</h3>
+            
+            <h4 class="subsection-title">Materialele necesare</h4>
+            <ul>
+                <li>Material vegetal proaspăt sau material conservat anterior prin fixare în alcool 70%</li>
+                <li>Bisturiu, brici sau lame de ras</li>
+                <li>Ac spatulat</li>
+                <li>Pipete</li>
+                <li>Hârtie de filtru sau alte soluții absorbante</li>
+                <li>Lame bine curățate și șterse</li>
+                <li>Colorant</li>
+                <li>Apă de Javel (hipoclorit de potasiu)</li>
+                <li>Mediu de montare, cum ar fi apă distilată, apă de robinet sau soluții glicerinată/glicerină</li>
+            </ul>
+            
+            <h4 class="subsection-title">Tipuri de secțiuni</h4>
+            <ol>
+                <li><b>Secțiuni transversale:</b> Tăierea perpendiculară pe axa organului.</li>
+                <li><b>Secțiuni longitudinale-radiale (mediane):</b> Tăierea paralelă cu axa și care intersectează centrul organului.</li>
+                <li><b>Secțiuni longitudinale-tangentiale:</b> Tăierea paralelă cu axa, dar care nu trece prin centru.</li>
+            </ol>
+            
+            <h4 class="subsection-title">Pentru organele cu simetrie radială (ex. rădăcină, tulpină)</h4>
+            <ul>
+                <li>Dacă urmează să realizezi secțiuni transversale, taie fragmente de 10–20 mm.</li>
+                <li>Pentru secțiuni longitudinale, fragmentele trebuie să fie mai mici, de 5–7 mm.</li>
+                <li>Folosește bisturiul (sau un ac spatulat) pentru a face un tăietor de-a lungul axei fiecărei jumătăți a organului – asigură-te că tăierea nu depășește jumătate din grosimea acestuia.</li>
+                <li>Așază fragmentul obținut în spațiul format între cele două jumătăți de soc.</li>
+            </ul>
+            
+            <h4 class="subsection-title">Pentru materialul vegetal din măduva de soc</h4>
+            <ul>
+                <li><b>Recoltarea:</b> Se ia material de pe lăstarii anuali, moși după iarnă, după o cojire prealabilă. Ramurile vii sau foarte mature sunt de regulă inutile, deoarece au coaja prea groasă și măduva insuficientă.</li>
+                <li><b>Mod de utilizare:</b> Materialul poate fi folosit atât uscat (pentru secționări ale materialului proaspăt) cât și conservat în alcool 70%.</li>
+                <li><b>Pre-procesare:</b> Taie fragmente de 20–30 mm lungime, apoi împarte fiecare bucată în două jumătăți egale cu o lamă de ras (în loc de bisturiu).</li>
+            </ul>
+            
+            <h4 class="subsection-title">Pentru frunze</h4>
+            <ul>
+                <li>Detașează cu foarfecele un segment din lamina frunzei, asigurându-te că tăierea se face paralel cu nervurile secundare.</li>
+                <li>Poziționează fragmentul între cele două jumătăți de soc, cu nervura principală situată deasupra axei longitudinale a măduvei de soc.</li>
+            </ul>
+            
+            <h4 class="subsection-title">Secționarea propriu-zisă</h4>
+            <ol>
+                <li><b>Poziționarea materialului:</b> Așază fragmentul de material vegetal în zona măduvei de soc.</li>
+                <li><b>Pregătirea briciului:</b> Deschide briciul sub un unghi de 90° sau 100°. Umezește lama briciului folosind apă distilată sau de robinet, pentru a ajuta la obținerea unor secțiuni netede și pentru a preveni alunecarea materialului pe lamă.</li>
+                <li><b>Tehnica tăierii:</b> Ține materialul între degetele mâinii stângi, fixând baza lamei briciului cu degetele mâinii drepte astfel încât să poți controla tăierea. Mișcă lama, trăgând-o de la bază spre vârf într-o singură mișcare continuă pentru a evita oblicitatea secțiunii. Obiectivul este obținerea unor secțiuni cât mai subțiri, uniforme și perfect perpendiculare (sau, dacă se dorește, paralele) cu axa materialului.</li>
+                <li><b>Colectarea secțiunilor:</b> Recuperează secțiunile de pe lama briciului folosind o pensetă, un ac spatulat sau prin imersarea lamei în lichid. Așază secțiunile într-un vas Petri sau pe o sticlă de ceas cu apă pentru a le păstra proaspete. După finalizarea tăieturii, selectează 5–6 secțiuni fine pe o lamă și elimină fragmentele de calitate inferioară.</li>
+            </ol>
+            
+            <h4 class="subsection-title">Tratamentul secțiunilor obținute</h4>
+            <ol>
+                <li><b>Javelizarea:</b> Plasează secțiunile în apă de Javel (hipoclorit de potasiu) timp de 3–5 minute, până când acestea devin transparente sau se decolorează.</li>
+                <li><b>Spălarea:</b> Clătește bine secțiunile pentru a elimina orice reziduu de chimicale.</li>
+                <li><b>Colorarea:</b> Aplică colorantul pe secțiuni timp de câteva minute conform instrucțiunilor pentru a evidenția structurile celulare.</li>
+                <li><b>Înlăturarea excesului de colorant:</b> Spală din nou secțiunile cu apă până când nu mai rămâne colorant în exces.</li>
+            </ol>
+            
+            <h4 class="subsection-title">Realizarea preparatului microscopic</h4>
+            <ol>
+                <li><b>Montarea pe lamă:</b> Așază secțiunile pe o lamă de sticlă. Adaugă puțin mediu de montare (apă distilată, de robinet, soluție glicerinată sau glicerină).</li>
+                <li><b>Aplicarea lamei acoperitoare:</b> Ține cu două degete lamela acoperitoare din părți opuse și așaz-o peste picătura de lichid de pe lamă, astfel încât marginea liberă a lamei să fie paralelă cu lamă. Deplasează ușor lamela pentru ca lichidul să se răspândească uniform și să acopere complet secțiunile. Coborâ încet lamela peste secțiuni, asigurându-te că acestea nu alunecă. Dacă apar bule de aer între lamă și lamelă, îndepărtează-le cu ajutorul unui ac spatulat sau al unei pensete. Elimină excesul de lichid cu hârtie de filtru sau o altă metodă de absorbție. În cazul evaporării lichidului în timpul observației, adaugă 1–2 picături suplimentare la marginea lamei folosind o pipetă.</li>
+                <li><b>Observarea la microscop:</b> După pregătirea laminatei, procedează la examinarea secțiunilor folosind microscopul pentru a studia detaliile structurale ale materialului vegetal.</li>
+            </ol>
+        </div>
+        
+        <!-- Celula-unitatea structurală şi funcţională a vieţii -->
+        <div class="content-card">
+            <h3 class="section-title">II. Celula-unitatea structurală şi funcţională a vieţii</h3>
+            
+            <h4 class="subsection-title">A. Structura celulei:</h4>
+            
+            <h5><b>CELULA VEGETALĂ – STRUCTURĂ (Preparate din ceapă, Allium cepa)</b></h5>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Bulb de ceapă (roșie sau albă)</li>
+                <li>Microscop</li>
+                <li>Lame (de sticlă)</li>
+                <li>Vas Petri cu apă</li>
+                <li>Pipete</li>
+                <li>Ace lanceolate</li>
+                <li>Bisturiu</li>
+                <li>Pensetă</li>
+                <li>Foarfece</li>
+                <li>Sticlă de ceas</li>
+                <li>Hârtie de filtru sau sugativă</li>
+                <li>Colorant (ex. albastru de metil, roșu de Congo, fuxină, crisoidină, sau iod în iodură de potasiu – toate în concentrație diluată la aproximativ 1%)</li>
+            </ul>
+            
+            <h6><b>Procedură</b></h6>
+            
+            <p><b>1. Pentru ceapa roșie</b></p>
+            <ul>
+                <li><b>Secționare:</b> Taie bulbul de ceapă longitudinal cu bisturiul pentru a expune straturile interne.</li>
+                <li><b>Selectarea frunzei:</b> Alege o frunză cărnoasă din interiorul cepei.</li>
+                <li><b>Dezghețarea epidermei:</b> Folosind penseta, îndepărtează cu grijă epiderma de pe suprafața internă (partea concavă) a frunzei.</li>
+                <li><b>Înmuierea:</b> Transferă epiderma într-un vas Petri cu apă și las-o să se înmoaie.</li>
+                <li><b>Colorarea:</b> Pune epiderma într-o soluție de colorant (concentrație de 1%) pentru câteva minute, astfel încât să evidențieze detaliile celulare.</li>
+            </ul>
+            
+            <p><b>2. Pentru ceapa albă</b></p>
+            <ul>
+                <li><b>Decupare sub apă:</b> Cu ajutorul foarfecelor, taie epiderma în fragmente mici, adaptate dimensiunii lamei.</li>
+                <li><b>Montarea pe lamă:</b> Așază fragmentele pe o lamă de sticlă, adăugând o picătură de apă.</li>
+                <li><b>Acoperirea:</b> Aplică o lamelă de acoperire cu atenție, evitând formarea bulelor de aer.</li>
+                <li><b>Întinderea și absorbția:</b> Folosește ace lanceolate pentru a netezi marginile preparatului, apoi elimină excesul de apă cu hârtie de filtru sau o dispozitiv absorbant.</li>
+                <li><b>Observarea:</b> Examinează preparatul la microscop.</li>
+            </ul>
+            
+            <h6><b>Ce vei observa</b></h6>
+            <ul>
+                <li><b>Organizarea texturii:</b> Vei vedea un țesut unistratificat format din celule prozenchimatice strâns unite, fără spații intercelulare vizibile.</li>
+                <li><b>Peretele celular:</b> Fiecare celulă prezintă un perete celular cu punctuațiuni, corespunzătoare membranei celulozice.</li>
+                <li><b>Nucleul:</b> În fiecare celulă se găsește un nucleu luminos, de formă sferică sau oval, situat central la celulele tinere și mai aproape de margini la cele adulte.</li>
+                <li><b>Citoplasma și vacuolele:</b> Citoplasma abundentă înconjoară nucleul, iar celulele conțin una sau mai multe vacuole pline cu suc vacuolar – celulele tinere având, de regulă, mai multe vacuole mici, iar celulele mature, mai puține, uneori o singură vacuolă mare.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a doua poza.jpeg"></div>
+        </div>
+        
+        <!-- Plastide -->
+        <div class="content-card">
+            <h3 class="section-title">Plastide</h3>
+            
+            <p>Plastidele sunt organite prezente exclusiv în celulele vegetale, întâlnite atât la alge, cât și la plante. Din punct de vedere morfologic și funcțional, acestea se împart în mai multe categorii:</p>
+            
+            <ul>
+                <li><b>Cloroplaste:</b> Plastide verzi implicate în procesul de fotosinteză, situate de obicei în organele expuse la lumină. Ele pot avea forme ovale, lenticulare sau, uneori, sferice.</li>
+                <li><b>Cromoplaste:</b> Plastide colorate care joacă un rol important în atragerea polenizatorilor și pot conferi culori roșii, portocalii sau galbene.</li>
+                <li><b>Leucoplaste:</b> Plastide incolore, specializate în stocarea substanțelor nutritive.</li>
+            </ul>
+            
+            <h4 class="subsection-title">Observarea Cloroplastelor – Preparat din Frunze de Elodea</h4>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Segmente terminale de tulpini cu frunze verzi de Elodea</li>
+                <li>Pensetă</li>
+                <li>Lame și lame de sticlă</li>
+                <li>Vas Petri cu apă</li>
+                <li>Pipete</li>
+                <li>Hârtie de filtru sau un alt dispozitiv de absorbție</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Mod de lucru:</b></h6>
+            <ol>
+                <li><b>Recoltarea probelor:</b> Ia o frunză tânără de pe tulpina de Elodea cu ajutorul pensetei.</li>
+                <li><b>Montarea preparatului:</b> Așază frunza pe lama de sticlă, cu partea superioară în sus, pe o picătură de apă. Acoperă frunza cu o lamelă de sticlă, având grijă ca nu să se formeze bule de aer. Îndepărtează excesul de apă cu o bucată de hârtie de filtru sau un dispozitiv absorbant.</li>
+                <li><b>Observarea:</b> Examinează preparatul la microscop. Cloroplastele se vor manifesta sub formă de discuri mici, plate, cu aspect rotund-ovale și intens luminoase. Ele au, de asemenea, proprietatea de a migra în interiorul celulelor parenchimatoase, adaptându-se la intensitatea luminii pentru a optimiza fotosinteza.</li>
+            </ol>
+            <div class="image-placeholder"><img src="a treia poza.jpeg"></div>
+        </div>
+        
+        <!-- Cromatofori -->
+        <div class="content-card">
+            <h3 class="section-title">Cromatofori</h3>
+            
+            <p><b>Caracterizare:</b> Cromatoforii reprezintă un tip de cloroplaste întâlnite la numeroase alge, remarcate prin dimensiunile lor mari comparativ cu cloroplastele obișnuite.</p>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Alge pluricelulare:
+                    <ul>
+                        <li>Spirogyra sp. („mătasea broaștei") – prezintă filamente netede, neramificate;</li>
+                        <li>Cladophora sp. („lâna broaștei") – are filamente ramificate cu o textură aspră.</li>
+                    </ul>
+                </li>
+                <li>Lame de sticlă și lame de acoperire;</li>
+                <li>Foarfece și pensetă;</li>
+                <li>Microscop;</li>
+                <li>Recipient cu apă (ideal: apă din lac sau apă stagnantă).</li>
+            </ul>
+            
+            <h6><b>Mod de lucru:</b></h6>
+            <ol>
+                <li><b>Recoltare:</b> Obține algele din apă și colectează-le într-un recipient cu apă.</li>
+                <li><b>Secționare:</b> Sub apă, folosește foarfecele pentru a tăia filamentele algei.</li>
+                <li><b>Montaj:</b> Așază câteva fragmente subsecționate pe o lamă de sticlă, adaugă o picătură de apă și acoperă cu o lamelă de acoperire.</li>
+                <li><b>Observare:</b> Examinează preparatul la microscop.</li>
+            </ol>
+            
+            <h6><b>Rezultate observaționale:</b></h6>
+            <ul>
+                <li><b>La Spirogyra:</b> Celulele au formă cilindrică și se dispun consecutiv; Fiecare celulă conține un singur nucleu; Cromatoforii se prezintă sub formă de panglici dispuse în spirală.</li>
+                <li><b>La Cladophora:</b> Celulele sunt cilindrice și se organizează în lanțuri; Se observă prezența mai multor nuclee; Cromatoforii apar sub forma unor structuri cilindrice cu perforații.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a patra poza.jpeg"></div>
+        </div>
+        
+        <!-- Cromoplaste -->
+        <div class="content-card">
+            <h3 class="section-title">Cromoplaste (plastide colorate)</h3>
+            
+            <p>Cromoplastele reprezintă plastide specializate, prezente la algele și plantele colorate, care conțin pigmenți carotenoizi (precum carotinele și xantofilele). Aceste organite conferă celulelor nuanțe galben-portocalii sau roșii și se găsesc în special în structuri reproductive sau decorative: petale, stamine, fructe și semințe. Ele sunt rare în organele vegetative, de exemplu în rădăcina de morcov, și prezintă forme, dimensiuni și structuri variate, în funcție de specie.</p>
+            
+            <h6><b>Materiale necesare</b></h6>
+            <ul>
+                <li>Organe vegetale:
+                    <ul>
+                        <li>Rădăcini tuberizate de morcov (Daucus carota)</li>
+                        <li>Fructe coapte, precum tomate (Lycopersicum esculentum), ardei (Capsicum annuum) și măceș (Rosa canina)</li>
+                        <li>Petale din flori precum forsiția sau păpădia (Taraxacum officinale)</li>
+                    </ul>
+                </li>
+                <li>Brici anatomic sau lamă de ras nefolosită</li>
+                <li>Ac spatulat</li>
+                <li>Lame de sticlă și lame de acoperire</li>
+                <li>Foarfece și pensetă</li>
+                <li>Vas Petri cu apă</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Procedură de pregătire a probelor</b></h6>
+            
+            <p><b>1. Pentru rădăcina de morcov:</b></p>
+            <ul>
+                <li>Realizează secțiuni transversale foarte subțiri folosind briciul sau o lamă de ras.</li>
+                <li>Plasează secțiunile obținute într-un vas Petri cu apă.</li>
+                <li>Alege cea mai fină secțiune, adaptată mărimii lamei.</li>
+                <li>Așază secțiunea pe o lamă de sticlă, adaugă o picătură de apă, acoper-o cu o lamelă și observă la microscop.</li>
+            </ul>
+            
+            <p><b>2. Pentru fructele de tomate, ardei și măceș:</b></p>
+            <ul>
+                <li>Cu ajutorul unui bisturiu, îndepărtează porțiunea exterioară a peretelui fructului.</li>
+                <li>Tăie o secțiune foarte subțire din partea cărnoasă.</li>
+                <li>Plasează secțiunea pe o lamă de sticlă, adaugă o picătură de apă și agită intens (folosind un ac spatulat sau o pensetă) pentru a dispersa celulele.</li>
+                <li>Acoperă cu lamelă și examinează preparatul la microscop.</li>
+            </ul>
+            
+            <p><b>3. Pentru petalele de forsiție sau de păpădie:</b></p>
+            <ul>
+                <li>Ia un mic fragment de petală și așază-l pe o lamă, într-o picătură de apă.</li>
+                <li>Acoperă rapid cu lamelă pentru a preveni formarea bulelor de aer.</li>
+                <li>Observă fragmentul la microscop.</li>
+            </ul>
+            
+            <h6><b>Ce vei observa</b></h6>
+            <ul>
+                <li><b>Celulele:</b> Fiecare celulă prezintă, de regulă, un nucleu clar vizibil și citoplasmă abundentă.</li>
+                <li><b>Cromoplastele:</b> Vei identifica numeroase organite colorate, care pot avea forme variate—sferice, ovale, lenticulare, aciculare, prismatice, piramidale sau fusiforme.</li>
+                <li><b>Rolul ecologic:</b> Deși cromoplastele nu sunt implicate direct în fotosinteză, ele au o importanță ecologică considerabilă, contribuind la polenizare, la diseminarea semințelor și fructelor și la atragerea animalelor.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a cincea poza.jpeg"></div>
+        </div>
+        
+        <!-- Leucoplaste -->
+        <div class="content-card">
+            <h3 class="section-title">Leucoplaste (Plastide Incolore)</h3>
+            
+            <p><b>Definiție și Localizare:</b> Leucoplastele sunt organitele incolore întâlnite în celulele vegetale, în special în țesuturile de depozitare, în zonele meristematice și în celulele epidermice. Aceste plastide joacă un rol esențial în sinteza și stocarea substanțelor de rezervă.</p>
+            
+            <p><b>Clasificare:</b> Leucoplastele se disting în funcție de natura chimică a substanțelor acumulate:</p>
+            <ul>
+                <li><b>Amiloplaste:</b> stochează amidon.</li>
+                <li><b>Oleoplaste:</b> depozitează lipide.</li>
+                <li><b>Proteinoplaste:</b> conțin rezerve proteice.</li>
+            </ul>
+            
+            <h6><b>Materiale Necesare:</b></h6>
+            <ul>
+                <li>Organe vegetative, cum ar fi:
+                    <ul>
+                        <li>Frunze proaspete de atârnătoare (Zebrina pendula)</li>
+                        <li>Frunze de telegraf (Tradescantia virginiana)</li>
+                    </ul>
+                </li>
+                <li>Lame și lame de sticlă</li>
+                <li>Brici anatomic sau lamă de ras nefolosită</li>
+                <li>Pensetă cu vârf ascuțit</li>
+                <li>Microscop</li>
+                <li>Vas Petri cu apă</li>
+            </ul>
+            
+            <h6><b>Mod de Lucru:</b></h6>
+            <ol>
+                <li>Folosind briciul sau penseta, izolează cu grijă un fragment din epiderma inferioară a unei frunze, evitând includerea țesutului inferior adiacent.</li>
+                <li>Așază fragmentul obținut pe o lamă de sticlă, într-o picătură de apă.</li>
+                <li>Acoperă cu o lamelă de acoperire și, dacă este necesar, îndepărtează excesul de lichid folosind hârtie de filtru sau un alt dispozitiv absorbant.</li>
+                <li>Examinează preparatul la microscop.</li>
+            </ol>
+            
+            <h6><b>Rezultate Așteptate:</b></h6>
+            <p>La microscop vei observa:</p>
+            <ul>
+                <li>O epidermă unistratificată.</li>
+                <li>Celule stomatice de formă reniformă, cu concavități orientate spre interior.</li>
+                <li>În celulele epidermice se vor identifica numeroase cloroplaste, comparativ cu alte celule.</li>
+                <li>În celulele adiacente, leucoplastele apar ca corpuri mici, sferice și incolore. Uneori, aceste leucoplaste se grupează suficient pentru a acoperi nucleul celulei.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a sasea poza.jpeg"></div>
+        </div>
+        
+        <!-- Vacuolele -->
+        <div class="content-card">
+            <h3 class="section-title">Vacuolele</h3>
+            
+            <p><b>Definiție:</b> Vacuolele sunt compartimente vesiculare din celulele vegetale, înconjurate de o membrană simplă denumită tonoplast, care conține și stochează suc vacuolar responsabil de menținerea homeostaziei (pH, compoziția și concentrația substanțelor) în celulă.</p>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Bulbi de ceapă (Allium cepa), frunze de Elodea canadensis sau petale de trandafir/garoafă</li>
+                <li>Lame de sticlă și lame de acoperire</li>
+                <li>Soluție apoasă 0,1% de roșu neutru</li>
+                <li>Microscop</li>
+                <li>Foarfece, brici anatomic sau lamă de ras</li>
+                <li>Pensetă</li>
+            </ul>
+            
+            <h6><b>Mod de lucru:</b></h6>
+            
+            <p><b>1. Pregătirea probei:</b></p>
+            <ul>
+                <li>Pentru petale: selectează un fragment de petală de trandafir sau garoafă.</li>
+                <li>Pentru frunze: detașează un fragment din epiderma superioară a unei frunze de ceapă sau folosește direct o frunză de Elodea canadensis.</li>
+            </ul>
+            
+            <p><b>2. Colorarea:</b></p>
+            <ul>
+                <li>Scufundă materialul selectat într-o soluție apoasă cu 0,1% roșu neutru timp de 10–15 minute.</li>
+                <li>Clătește bine cu apă pentru a îndepărta excesul de colorant.</li>
+            </ul>
+            
+            <p><b>3. Montajul preparatului:</b></p>
+            <ul>
+                <li>Așază fragmentul pe o lamă de sticlă, adaugă o picătură de apă, apoi acoper-o cu o lamelă de acoperire.</li>
+                <li>Asigură-te că nu se formează bule de aer și că excesul de apă este absorbit (folosind hârtie de filtru sau un dispozitiv absorbant).</li>
+            </ul>
+            
+            <p><b>4. Observarea:</b></p>
+            <ul>
+                <li>Examinează preparatul la microscop.</li>
+            </ul>
+            
+            <h6><b>Rezultate și observații:</b></h6>
+            <ul>
+                <li>În celulele observate, culoarea roșie se acumulează în vacuole, ceea ce le colora în aceeași nuanță.</li>
+                <li>La petalele de trandafir și garoafă, vei observa că sucul vacuolar este colorat natural datorită pigmenților antocianici.</li>
+                <li>În general, vei vedea celule cu un nucleu distinct și vacuole care se evidențiază în contrast cu restul celulei.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a saptea poza.jpeg"></div>
+        </div>
+        
+        <!-- Incluziunile Ergastice -->
+        <div class="content-card">
+            <h3 class="section-title">Incluziunile Ergastice</h3>
+            
+            <p>Incluziunile celulare reprezintă depozite variate de compuși chimici sintetizați de celulă, care nu sunt înconjurate de membrane. Acestea pot conține substanțe solide, lichide sau gazoase și provin fie din procese anabolice (servind ca rezerve de energie), fie din procese de catabolism (funcționând ca produse de excreție).</p>
+            
+            <h4 class="subsection-title">Amidonul ca Inclusiune Ergastică</h4>
+            
+            <p>Amidonul, un tip de inclusiune glucidică, se prezintă sub două forme distincte:</p>
+            
+            <ol>
+                <li><b>Amidon autohton (primar):</b> Se formează în cloroplaste, direct prin fotosinteză, în procesul de asimilare.</li>
+                <li><b>Amidon de rezervă (secundar):</b> Este stocat în amiloplaste, fiind prezent în diverse organe vegetale precum semințele, tulpinile și frunzele.</li>
+            </ol>
+            
+            <h5><b>Experiment: Evidențierea Amidonului Autohton</b></h5>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Frunze mici din plante acvatice, de exemplu:
+                    <ul>
+                        <li>Elodea canadensis (denumită popular „ciuma apelor")</li>
+                        <li>Valisneria spiralis (cunoscută și ca „sârmulița apelor")</li>
+                    </ul>
+                </li>
+                <li>Lame de sticlă și lame de acoperire</li>
+                <li>Soluție apoasă 0,1% de iod + iodură de potasiu</li>
+                <li>Pensetă</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Procedură:</b></h6>
+            <ol>
+                <li>Izolează o frunză mică folosind penseta.</li>
+                <li>Așază frunza pe o lamă de sticlă și adaugă o picătură de soluție apoasă de iod + iodură de potasiu.</li>
+                <li>Acoperă cu o lamelă de acoperire.</li>
+                <li>După aproximativ 2–3 minute, examinează preparatul la microscop.</li>
+            </ol>
+            
+            <h6><b>Rezultat așteptat:</b></h6>
+            <p>În fiecare cloroplast, vei observa cel puțin un granule de amidon, colorat în albastru sau mov, ceea ce indică prezența amidonului autohton produs prin fotosinteză.</p>
+        <div class="image-placeholder"><img src="a opta poza.jpeg"></div>
+        </div>
+        
+        <!-- Modificări Secundare ale Peretelui Celular -->
+        <div class="content-card">
+            <h3 class="section-title">Modificări Secundare ale Peretelui Celular – Cutinizare și Cuticularizare</h3>
+            
+            <p><b>Definiție și Caracteristici:</b> După modificările secundare, peretele celular primește un strat suplimentar, rigid, alcătuit în mare parte din polizaharide. Acest înveliș este specific celulelor bacteriene, ciupercilor, algelor și plantelor.</p>
+            
+            <ul>
+                <li><b>Cutinizare:</b> Procesul prin care pereții externi ai celulei se impregnează cu o substanță impermeabilă numită cutină.</li>
+                <li><b>Cuticularizare:</b> Etapa ulterioară, în urma căreia cutina se depune uniform sub formă de „pături" continue, formând cuticula.</li>
+            </ul>
+            
+            <h6><b>Materiale Necesare:</b></h6>
+            <ul>
+                <li>Frunze de:
+                    <ul>
+                        <li>Garoafe (Dianthus sp.)</li>
+                        <li>Iederă (Hedera helix)</li>
+                        <li>Laur (Ilex aquifolium)</li>
+                        <li>Pin (Pinus sp.)</li>
+                    </ul>
+                </li>
+                <li>Lame și lame de sticlă</li>
+                <li>Brici anatomic sau lamă de ras nefolosită</li>
+                <li>Măduvă de soc</li>
+                <li>Hârtie de filtru</li>
+                <li>Colorant: soluție de clorură de zinc iodată</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Mod de Lucru:</b></h6>
+            
+            <p><b>1. Secționare:</b></p>
+            <p>Taie secțiuni transversale foarte fine din frunzele selectate, folosind briciul sau lama de ras împreună cu măduva de soc pentru a obține fragmente precise.</p>
+            
+            <p><b>2. Montarea Preparatului:</b></p>
+            <p>Așază secțiunile pe o lamă de sticlă într-o singură picătură de apă. Îndepărtează excesul de apă cu ajutorul hârtiei de filtru.</p>
+            
+            <p><b>3. Colorarea:</b></p>
+            <p>Colorează fragmentele cu soluția de clorură de zinc iodată, astfel încât să evidențieze diferențele între pereții externi impregnați cu cutină și pereții interni (formatți predominant din celuloză).</p>
+            
+            <p><b>4. Observare:</b></p>
+            <p>Acoperă cu o lamelă de sticlă. Examinează preparatul la microscop.</p>
+            
+            <h6><b>Rezultate Observate:</b></h6>
+            <ul>
+                <li><b>Cuticula Externă:</b> Celulele vor prezenta o cuticulă colorată în nuanțe galben-deschis.</li>
+                <li><b>Pereți Externi (Cutinizați):</b> Aceștia vor avea tonuri galben-portocalii sau brune, datorită impregnației cu cutină.</li>
+                <li><b>Pereți Interni:</b> În special la celulele care conțin celuloză, se va observa o colorare violetă.</li>
+                <li><b>Funcționalitate:</b> Cuticula formează un strat protector care previne leziunile mecanice și pierderile excesive de apă, facilitând totodată schimburile gazoase esențiale pentru sănătatea țesutului.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a noua poza.jpeg"></div>
+        </div>
+        
+        <!-- Fiziologia celulei -->
+        <div class="content-card">
+            <h3 class="section-title">B. Fiziologia celulei:</h3>
+            
+            <h4 class="subsection-title">Răspunsul la Stimuli</h4>
+            
+            <p>Proprietatea de a reacționa la schimbările din mediu reprezintă un element esențial al tuturor formelor de viață. Organismele unicelulare își ajustează comportamentul în funcție de stimulii termici, chimici sau mecanici, manifestând mișcări direcționate care depind de avantajele sau dezavantajele pe care aceștia le pot aduce celulelor.</p>
+            
+            <h6><b>Materiale Necesare</b></h6>
+            <ul>
+                <li>Preparate microscopice proaspete cu amibe sau parameci</li>
+                <li>Sursă termică: lampă sau reflector</li>
+                <li>Sursă chimică: sare de bucătărie</li>
+                <li>Agent inert: bob de nisip</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Metodologia Experimentelor</b></h6>
+            
+            <p><b>1. Experimentele 1 și 2</b></p>
+            <p>Se aplică stimuli termici (de exemplu, un fascicul de radiații calde) sau chimici (folosind sare de bucătărie). Organismele se deplasează fie spre, fie în sens opus sursei de stimul, în funcție de efectul benefic sau nefavorabil pe care acesta îl exercită asupra lor.</p>
+            
+            <p><b>2. Experimentul 3</b></p>
+            <p>Atunci când o amibă intră în contact cu un obiect străin (cum ar fi un bob de nisip), pseudopodul ei se retrage, iar direcția de deplasare se schimbă pentru a evita contactul.</p>
+            
+            <h6><b>Modalități Alternative de Observare</b></h6>
+            <ul>
+                <li><b>Metoda termică:</b> Proiectează un fascicul de radiații calorice pe preparatul cu organisme unicelulare.</li>
+                <li><b>Metoda chimică:</b> Așază un cristal de sare la marginea lamelei care acoperă proba de microscop și așteaptă dizolvarea acestuia pentru ca schimbările să devină vizibile.</li>
+                <li><b>Metoda fizică:</b> Observă reacția amibelor la întâlnirea cu un obiect inert, cum ar fi un mic bob de nisip, pentru a vedea cum își ajustează traiectoria.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a zecea poza.jpeg"></div>
+        </div>
+        
+        <!-- Mișcarea Organismelor din Regnul Protista -->
+        <div class="content-card">
+            <h3 class="section-title">Mișcarea Organismelor din Regnul Protista</h3>
+            
+            <p>În regnul Protista sunt incluse organisme diverse, printre care se numără:</p>
+            <ul>
+                <li>Euglena viridis (euglena verde)</li>
+                <li>Paramecium caudatum (parameciul)</li>
+                <li>Amoeba proteus (amiba)</li>
+            </ul>
+            
+            <h6><b>Materiale Necesare</b></h6>
+            <ul>
+                <li>Microscop</li>
+                <li>Lame și lamele</li>
+                <li>Spatulă pentru prelevarea probelor</li>
+                <li>Cultură cu protozoare</li>
+                <li>Soluție de gelatină 3% sau soluție apoasă de gumă arabică (pentru a crea un mediu mai dens și a încetini mișcarea organismelor)</li>
+            </ul>
+            
+            <h6><b>Metoda de Observare a Mișcării</b></h6>
+            <ol>
+                <li>Se prepară o lamă cu o picătură din cultura de protozoare, astfel încât să se obțină un preparat microscopic.</li>
+                <li>Pentru a permite o urmărire mai facilă a mișcărilor, se adaugă un mediu mai dens (de exemplu, soluție de gelatină 3% sau soluție apoasă cu gumă arabică), care încetinește deplasarea organismelor.</li>
+            </ol>
+            
+            <h6><b>Mecanismele de Deplasare</b></h6>
+            
+            <p><b>1. Euglena</b></p>
+            <p>Se mișcă cu ajutorul unui flagel care oscilează într-o mișcare elicoidală constantă în mediul apos. Într-un mediu mai dens, mișcarea flagelului se face mai lentă, oferind posibilitatea de a urmări traseul acestuia; flagelul pornește de la corpusculul bazal și își extinde mișcarea spre vârf, generând o tracțiune care propulsează corpul înainte.</p>
+            
+            <p><b>2. Parameciul</b></p>
+            <p>Utilizează un set de cili aranjați în șiruri, care se mișcă în valuri vibraționale, propulsând celula prin mediul înconjurător.</p>
+            
+            <p><b>3. Amiba</b></p>
+            <p>Se deplasează printr-un proces de târâre, folosind pseudopode. Aceste extensii ale membranei celulare se formează în direcția mișcării prin evaginarea selectivă a membranei, iar fluxul citoplasmatic în pseudopod face posibilă reorientarea constantă a deplasării.</p>
+            
+            <p>Acest set de proceduri și observații ilustrează modul în care organismele unicelulare răspund rapid la mediul înconjurător, adaptându-se unui spectru divers de stimuli. Studiul acestor procese nu doar că evidențiază versatilitatea vieții la scară microscopică, ci și oferă o perspectivă asupra mecanismelor fundamentale ale mișcării celulare.</p>
+            <div class="image-placeholder"><img src="a unspea poza.jpeg"></div>
+        </div>
+        
+        <!-- Hrănirea la Parameci -->
+        <div class="content-card">
+            <h3 class="section-title">Hrănirea la Parameci</h3>
+            
+            <h6><b>Materiale Necesare</b></h6>
+            <p>Materialele sunt similare cu cele folosite pentru observarea hrănirii la amibe.</p>
+            
+            <h6><b>Procedură și Observații</b></h6>
+            <ul>
+                <li>Particulele de hrană sunt introduse în cavitatea peristomială a parameciului datorită mișcării orchestrate a cililor.</li>
+                <li>Organismele suspendate sunt atrase în interior, intrând prin citostom (gura celulară) și formând o veziculă digestivă unde are loc digestia.</li>
+                <li>Resturile nedigerate sunt apoi eliminate prin intermediul citoproctului.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a douazeci si una poza.jpeg"></div>
+        </div>
+        
+        <!-- OSMOZA -->
+        <div class="content-card">
+            <h3 class="section-title">OSMOZA</h3>
+            
+            <p>Osmoza este fenomenul prin care apa traversează o membrană semipermeabilă, trecând dintr-o soluție mai diluată într-una mai concentrată.</p>
+            
+            <h6><b>Materiale Necesare</b></h6>
+            <ul>
+                <li>Tub de sticlă cu formă de pâlnie</li>
+                <li>Membrană degresată (obținută din intestinul unui animal)</li>
+                <li>Soluție osmotică: fie 10% zaharoză, fie 20% NaCl</li>
+                <li>Apă distilată</li>
+                <li>Cristalizor sau alt recipient adecvat</li>
+                <li>Grilaj din sticlă</li>
+            </ul>
+            
+            <h6><b>Metodă Experimentală și Rezultate</b></h6>
+            
+            <p><b>1. Montarea Osmometrului:</b></p>
+            <p>Fixează membrana la capătul tubului de sticlă cu ajutorul unui fir de ață, formând astfel un osmometru. Toarnă în tub soluția osmotică (de exemplu, soluție de zaharoză 10% sau NaCl 20%) fără a umple complet tubul.</p>
+            
+            <p><b>2. Asamblarea Sistemului:</b></p>
+            <p>Așază un grilaj din sticlă pe fundul cristalizorului, apoi adaugă apă distilată în recipient. Introdu osmometrul în cristalizor, astfel încât partea cu membrană să fie în contact cu grilajul.</p>
+            
+            <p><b>3. Observarea Schimbărilor de Nivel:</b></p>
+            <p>Notifică nivelul inițial al lichidului din tub (marcat ca t₁). După o perioadă, vei observa o creștere a nivelului (t₁ crește), deoarece apa din mediul din cristalizor pătrunde prin membrană în soluția mai concentrată.</p>
+            
+            <p><b>4. Difuziunea Substanțelor:</b></p>
+            <p>Ulterior, nivelul lichidului din osmometru începe să scadă (t₂) pe măsură ce substanțele dizolvate difuzează prin membrană în direcția opusă, până când se atinge un echilibru.</p>
+            
+            <p><b>5. Stabilizarea Nivelului:</b></p>
+            <p>Când concentrațiile de pe ambele părți ale membranei se echilibrează, nivelul lichidului se stabilizează.</p>
+            <div class="image-placeholder"><img src="a doispea poza.jpeg"></div>
+        </div>
+        
+        <!-- Plasmoliza și Deplasmoliza -->
+        <div class="content-card">
+            <h3 class="section-title">Plasmoliza și Deplasmoliza: Fenomene Celulare</h3>
+            
+            <h4 class="subsection-title">Plasmoliza</h4>
+            
+            <p><b>Definiție:</b> Plasmoliza reprezintă procesul prin care protoplastul unei celule vii scade în volum. Aceasta se întâmplă atunci când celula, expusă unei soluții hiperotonice, pierde apă – în special din sucul vacuolar – din cauza permeabilității selective a membranei celulare și a celei a vacuolei.</p>
+            
+            <p><b>Mecanism:</b> Când celula intră în contact cu o soluție concentrată:</p>
+            <ul>
+                <li>Apa se deplasează din interiorul celulei către mediul înconjurător.</li>
+                <li>Vacuolele se contractă, iar întreaga celulă pierde apă.</li>
+                <li>Protoplasma se separă de peretele celular.</li>
+            </ul>
+            
+            <p>Acest proces poate fi observat în trei etape:</p>
+            <ol>
+                <li><b>Plasmoliză incipientă:</b> Separarea apare doar la colțurile celulei.</li>
+                <li><b>Plasmoliză concavă:</b> În primele 3 minute, separarea se extinde și în alte zone ale celulei.</li>
+                <li><b>Plasmoliză convexă (finală):</b> În următoarele 10-15 minute, separarea devine semnificativă, iar celula capătă un contur convex.</li>
+            </ol>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Bulbi de ceapă (Allium cepa) sau frunze de Elodea canadensis</li>
+                <li>Soluție hipertonică (ex. KNO₃ 1 M; alternativ, NaCl sau soluție de zaharoză 5–7%)</li>
+                <li>Lame și lame de acoperire</li>
+                <li>Hârtie de filtru sau sugativă</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Procedură experimentală pentru plasmoliză:</b></h6>
+            <ol>
+                <li>Secționează bulbul de ceapă sau recoltează un fragment din stratul epidermic al frunzelor.</li>
+                <li>Plasează proba pe lamă și acoper-o cu o lamă de acoperire, apoi examinează starea de turgescență a celulelor la microscop.</li>
+                <li>Depune 2–3 picături din soluția hipertonică pe una dintre marginile lamelei.</li>
+                <li>Pe partea opusă, așază o bucată de hârtie de filtru, care va absorbi apa și va permite soluției hiperotone să pătrundă între lamă și lamelă.</li>
+                <li>Observă, la microscop, cum celulele se contractă și protoplasma se desprinde progresiv, trecând prin stadiile de plasmoliză menționate.</li>
+            </ol>
+            <div class="image-placeholder"><img src="a paispea poza.jpeg "></div>
+            <h4 class="subsection-title">Deplasmoliza</h4>
+            
+            <p><b>Definiție:</b> Deplasmoliza este procesul invers, prin care celula recâștigă volumul inițial, reabsorbând apă din mediul extern și revenind la starea de turgescență.</p>
+            
+            <p><b>Mecanism:</b> După ce celula a fost plasmolizată:</p>
+            <ul>
+                <li>Se adaugă apă (creând un mediu hipo-tonic) pe marginea lamelei.</li>
+                <li>Prin intermediul hârtiei de filtru sau a unui sugativ, soluția concentrată este diluată.</li>
+                <li>Apa este atrasă în interior de către sucul vacuolar, iar vacuolele se relaxează.</li>
+                <li>Protoplastul recâștigă treptat forma și volumul inițiale.</li>
+            </ul>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <p>Acestea sunt aceleași ca la plasmoliză:</p>
+            <ul>
+                <li>Bulbi de ceapă sau frunze de Elodea canadensis</li>
+                <li>Soluție hipertonică inițială (KNO₃ 1 M, NaCl sau soluție de zaharoză 5–7%)</li>
+                <li>Lame și lame de acoperire</li>
+                <li>Hârtie de filtru sau sugativă</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Procedură experimentală pentru deplasmoliză:</b></h6>
+            <ol>
+                <li>Pe una dintre margini, adaugă o picătură de apă, astfel încât soluția concentrată să fie diluată.</li>
+                <li>Pe marginea opusă, folosește hârtie de filtru sau sugativă pentru a ajuta la absorbția suplimentară a lichidului concentrat.</li>
+                <li>Observă, la microscop, cum sucul vacuolar atrage apa, vacuolele se relaxează, iar protoplastul își recâștigă treptat volumul original.</li>
+            </ol>
+            <div class="image-placeholder"><img src="a saispea poza.jpeg"></div>
+        </div>
+        
+        <!-- Mișcarea de rotație a citoplasmei -->
+        <div class="content-card">
+            <h3 class="section-title">Mișcarea de rotație a citoplasmei și a organitelor</h3>
+            
+            <p><b>Descriere:</b> Acest tip de mișcare se întâlnește în celulele ce au o singură vacuolă centrală. În cadrul său, citoplasma și organitele se deplasează constant într-un singur sens, ceea ce generează impresia unui flux circular sau rotativ.</p>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Frunze tinere de plante acvatice (de exemplu, Elodea canadensis sau Miriophyllum spicatum)</li>
+                <li>Pensă (forceps)</li>
+                <li>Lame și lame de sticlă</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Procedură:</b></h6>
+            <ol>
+                <li>Folosește pensa pentru a desprinde o frunză tânără de la vârful vegetativ al tulpinii.</li>
+                <li>Așază frunza pe o lamă de sticlă, într-o picătură de apă, și acoper-o cu lamelă.</li>
+                <li>Dacă expui planta, înainte de experiment, la lumina intensă a unui bec, conținutul celular se mobilizează, făcând mișcarea mai vizibilă.</li>
+                <li>Examinează proba cu microscopul și observă următoarele:
+                    <ul>
+                        <li>Fiecare celulă prezintă o singură vacuolă centrală (uneori două sau trei în cazuri rare).</li>
+                        <li>Sunt prezente numeroase cloroplaste de formă lenticulară, aliniate în cordoane citoplasmatice.</li>
+                        <li>Fiecare celulă conține un nucleu sferic sau oaredal.</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h6><b>Tipuri de mișcare:</b></h6>
+            <ul>
+                <li><b>Mișcare circulară:</b> Apare când citoplasma se mișcă în jurul vacuolei centrale, de-a lungul peretelui celular.</li>
+                <li><b>Mișcare de rotație:</b> Se observă în celulele cu mai multe vacuole, unde direcția rotației poate varia.</li>
+            </ul>
+            
+            <h6><b>Observații suplimentare:</b></h6>
+            <p>Intensificarea fluxului luminos sau încălzirea apei (la 30°–40°C) poate accelera mișcarea citoplasmei și a organitelor, sporind astfel claritatea efectului de "curgere".</p>
+        <div class="image-placeholder"><img src="a saptispea poza.jpeg"></div>
+        </div>
+        
+        <!-- Mișcarea de circulație a citoplasmei -->
+        <div class="content-card">
+            <h3 class="section-title">Mișcarea de circulație a citoplasmei și a organitelor</h3>
+            
+            <p><b>Descriere:</b> Această mișcare este specifică celulelor care dispun de mai multe vacuole. În ele, se formează o "pungă plasmatică" care conține un nucleu poziționat excentric, înconjurată de un manșon plasmatic parietal. Dintre acestea, se extind diverse cordoane citoplasmatice dispuse radial, ce leagă punga plasmatică de peretele celular.</p>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Flori proaspete de Tradescantia virginica sau alga "mătasea broaștei" (Spirogyra)</li>
+                <li>Pensă (forceps)</li>
+                <li>Lame și lame de sticlă</li>
+                <li>Microscop</li>
+            </ul>
+            
+            <h6><b>Procedură:</b></h6>
+            <ol>
+                <li>Cu ajutorul unei pensă, desprinde câțiva peri din staminele florilor de Tradescantia virginica sau recoltează o mică porțiune de alge de tip Spirogyra.</li>
+                <li>Așază materialul biologic pe o lamă de sticlă, într-o picătură de apă, și acoper-o cu lamelă.</li>
+                <li>Examinează proba sub microscop pentru a observa structura internă:
+                    <ul>
+                        <li>O pungă plasmatică ce conține nucleul (de regulă poziționat excentric).</li>
+                        <li>Un manșon plasmatic parietal care înconjoară această pungă.</li>
+                        <li>Numeroase cordoane citoplasmatice ce se extind radial, de la zona nucleului spre periferia celulei.</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h6><b>Caracteristici ale mișcării:</b></h6>
+            <ul>
+                <li><b>Circulația:</b> Se desfășoară în cordoanele citoplasmatice, care interconectează punga plasmatică nucleară cu manșonul plasmatic parietal.</li>
+                <li>Curenții de citoplasmă pot avea direcții și viteze diferite, oferind celulelor un aspect dinamic de "circulație".</li>
+            </ul>
+        </div>
+        
+        <!-- Diviziunea celulara -->
+        <div class="content-card">
+            <h3 class="section-title">C. Diviziunea celulara</h3>
+            
+            <h4 class="subsection-title">Diviziunea celulară prin înmugurire la drojdia de bere</h4>
+            
+            <p><b>Descriere:</b> Diviziunea prin înmugurire este modul specific în care drojdia (de exemplu, Saccharomyces cerevisiae) se reproducă. Această metodă asimetrică presupune formarea unui mic „mugureș" pe suprafața celulei-mamă, care, ulterior, se dezvoltă în celulă fiică.</p>
+            
+            <h6><b>Etape ale procesului:</b></h6>
+            <ol>
+                <li>O anumită zonă a peretelui celulei-mamă se înmoaie.</li>
+                <li>Citoplasma împinge local peretele, formând o evaginare numită mugureș.</li>
+                <li>Nucleul celulei-mamă se divide.</li>
+                <li>Unul din nucleele formate se deplasează în mugureș.</li>
+                <li>Mugureșul crește și se diferențiază în celula fiică.</li>
+            </ol>
+            
+            <h6><b>Materiale necesare:</b></h6>
+            <ul>
+                <li>Drojdie de bere proaspătă (Saccharomyces cerevisiae)</li>
+                <li>Vase Petri</li>
+                <li>Lame și lame de sticlă</li>
+                <li>Pipete sau baghete de sticlă</li>
+                <li>Microscop</li>
+                <li>Apă călduță și puțin zahăr</li>
+            </ul>
+            
+            <h6><b>Metodologia experimentală:</b></h6>
+            <ol>
+                <li>Dizolvă drojdia de bere într-un vas cu apă călduță, adăugând puțin zahăr, și amestecă bine.</li>
+                <li>Menține soluția la o temperatură de 18–20°C timp de 24 de ore pentru a permite reproducerea celulară.</li>
+                <li>Recoltează câteva picături folosind o baghetă de sticlă sau o pipetă.</li>
+                <li>Transferă probele pe o lamă de sticlă, acoperă-le cu lamelă și examinează-le sub microscop.</li>
+                <li>Vei observa multe celule individuale, dar și unele simple celule cu unul sau mai mulți mugureși, marcând apariția celulelor fiice.</li>
+            </ol>
+            
+            <h6><b>Observații suplimentare:</b></h6>
+            <ul>
+                <li>Celulele au, de obicei, o formă ovală.</li>
+                <li>Peretele celular este compus din polizaharide.</li>
+                <li>Fiecare celulă conține cel puțin o vacuolă delimitată de tonoplast.</li>
+                <li>Nucleul se colorează evident (de exemplu, folosind roșu neutru).</li>
+            </ul>
+        </div>
+        
+        <!-- Mitoza -->
+        <div class="content-card">
+            <h3 class="section-title">Mitoza (diviziunea ecvațională)</h3>
+            
+            <p><b>Scop:</b> Această secțiune descrie procedura experimentală pentru evidențierea diviziunii mitotice în celulele vegetale, folosind probe obținute din radicelile unor plante precum bulbul de ceapă, germenii de secară, bob și orz.</p>
+            
+            <h6><b>Materiale necesare</b></h6>
+            
+            <p><b>• Probe celulare:</b></p>
+            <ul>
+                <li>Vârfuri meristematice de la bulbi de ceapă (Allium cepa)</li>
+                <li>Sau semințe germinate de secară (Secale cereale), bob (Vicia faba) și orz (Hordeum vulgare)</li>
+            </ul>
+            
+            <p><b>• Consumabile și reactivi:</b></p>
+            <ul>
+                <li>Lame și lame de sticlă</li>
+                <li>Bromonafthalena sau hidroxichinoleina (0,03%)</li>
+                <li>Colchicină (2–3 picături, 0,1–1%) – pentru influențarea clivajului cromozomilor</li>
+                <li>Fixator (alcool acetic 3:1 sau fixator Carnoy)</li>
+                <li>Acid clorhidric (N/1)</li>
+                <li>Reactiv Schiff (fuxină bazică)</li>
+                <li>Carmin acetic sau orceină acetică</li>
+                <li>Albumină glicerinată (amestec de glicerină și albuș de ou)</li>
+            </ul>
+            
+            <p><b>• Echipamente adiționale:</b></p>
+            <ul>
+                <li>Vase Petri, fiole, pahar Berzelius sau Erlenmeyer</li>
+                <li>Forfecute, pense, ac spatulat</li>
+                <li>Lampă cu spirt</li>
+            </ul>
+            
+            <h6><b>Obținerea radicelor</b></h6>
+            
+            <p><b>Pentru semințe:</b></p>
+            <ol>
+                <li>Plasează semințele într-un vas Petri, pe hârtie de filtru umezită.</li>
+                <li>Pentru acumularea unui număr mare de celule în metafază, poți supune semințele la un șoc termic (de exemplu, 30–60 minute la frigider, apoi 1–2 ore la 30°C).</li>
+            </ol>
+            
+            <p><b>Pentru ceapă:</b></p>
+            <ol>
+                <li>Așază bulbii de ceapă deasupra unui recipient cu apă (asigurându-te că partea activă a tulpinii este scufundată).</li>
+                <li>Menține vescul la 20–22°C pentru 2–3 zile.</li>
+            </ol>
+            
+            <p>După ce radicele ajung la lungimea de 5–10 mm, recoltează-le cu grijă folosind foarfece sau o pensetă.</p>
+            
+            <h6><b>Etapele procedurii experimentale</b></h6>
+            
+            <p><b>1. Prefixare:</b></p>
+            <ul>
+                <li><b>Scop:</b> Inhibă formarea fusului de diviziune și stimulează acumularea celulelor în metafază, facilitând observarea cromozomilor individuali.</li>
+                <li><b>Procedură:</b> Înmoaie radicele în soluție de bromonafthalena sau hidroxichinoleina (0,03%) timp de 3–5 ore, adăugând opțional 2–3 picături de colchicină (0,1–1%).</li>
+                <li><b>Notă:</b> Dacă dorești să vezi toate fazele diviziunii, poți omite prefixarea și imediat trece la fixare.</li>
+            </ul>
+            
+            <p><b>2. Fixare:</b></p>
+            <ul>
+                <li><b>Scop:</b> Oprește activitatea celulară, coagulând constituenții și păstrând configurația internă și cromozomii.</li>
+                <li><b>Procedură:</b> Immersează complet probele în fixator (alcool acetic 3:1 sau fixator Carnoy) și păstrează-le la 0–4°C timp de 12–15 ore.</li>
+            </ul>
+            
+            <p><b>3. Hidroliză:</b></p>
+            <ul>
+                <li><b>Scop:</b> Dizolvă parțial componentele pectice din peretele celular, facilitând etalarea cromozomilor și eliberarea grupărilor aldehidice din ADN.</li>
+                <li><b>Procedură:</b> După eliminarea fixatorului, tratează radicele cu acid clorhidric (N/1), încălzit la 60°C, timp de 5–10 minute.</li>
+            </ul>
+            
+            <p><b>4. Colorare:</b></p>
+            <ul>
+                <li><b>Procedură:</b> Îndepărtează acidul (prin clătire cu apă distilată sau folosind hârtie de filtru) și adaugă 2–3 ml de reactiv Schiff (fuxină bazică) pe radicelă, lăsând reacția să se dezvolte timp de 10–15 minute la temperatura camerei.</li>
+            </ul>
+            
+            <p><b>5. Realizarea preparatelor:</b></p>
+            <ul>
+                <li>Aplică o picătură de carmin acetic sau orceină acetică pe centrul unei lame.</li>
+                <li>Plasează cu grijă o porțiune de radicelă (1–2 mm, prelevată cu un ac spatulat sau bisturiu) în picătura cu colorant.</li>
+                <li>Aplatizează ușor materialul pentru a obține un strat cel mai uniform posibil sub lamelă.</li>
+                <li>Dacă dorești o conservare îndelungată, acoperă preparatul cu un strat subtire de albumină glicerinată și încălzește rapid pentru a coagula albumina.</li>
+            </ul>
+            
+            <p><b>6. Examinare:</b></p>
+            <ul>
+                <li>Analizează preparatul sub microscop, observând detaliile procesului mitotic.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a nouaspea poza.jpeg"></div>
+        </div>
+        
+        <!-- Studiul Cromozomilor -->
+        <div class="content-card">
+            <h3 class="section-title">Studiul Cromozomilor</h3>
+            
+            <p>În analiza cromozomilor aflați în metafază, se studiază structura și forma acestora, precum și modul în care se aranjează pentru a forma cariotipul specific unei specii. Cromozomii în metafază sunt alcătuiți din două cromatide identice, unite la nivelul centromerului (zona de constricție primară), iar unii cromozomi pot prezenta și sateliți sau constricții secundare.</p>
+            
+            <h4 class="subsection-title">Clasificarea Cromozomilor</h4>
+            
+            <p>Conform poziției centromerului și raportului dintre lungimea brațelor, cromozomii se împart astfel:</p>
+            
+            <ul>
+                <li><b>Metacentric (M, m):</b> Centromerul este situat aproape de mijloc, rezultând brațe de lungime aproape egală (raport 1,0–1,7).</li>
+                <li><b>Submetacentric (sm):</b> Centromerul se poziționează ușor decalat de la centru, formând brațe de lungimi inegale (raport 1,7–3,0).</li>
+                <li><b>Subtelocentric (st):</b> Centromerul se găsește aproape de capăt, iar raportul dintre brațe variază între 3,0 și 7,0.</li>
+                <li><b>Acrocentric (a):</b> Centromerul este plasat aproape de extremitate, generând un braț mult mai lung și unul foarte scurt.</li>
+                <li><b>Telocentric (T):</b> Centromerul se află direct la capăt, astfel încât practic se formează un singur braț.</li>
+            </ul>
+            
+            <h6><b>Materiale Necesare</b></h6>
+            <ul>
+                <li>Preparate citologice cu cromozomi (ex. de la Allium sau alte plante/animale)</li>
+                <li>Microscop binocular sau cu obiectiv de imersie (ideal x90) și ulei de imersie</li>
+                <li>Micrometru ocular sau obiectiv pentru măsurători</li>
+                <li>Cameră clară și/sau cameră digitală</li>
+                <li>Foarfece, pastă de lipit și riglă de măsurat</li>
+            </ul>
+            
+            <h6><b>Metodologia de Studiu</b></h6>
+            
+            <p><b>1. Observarea la Microscop:</b></p>
+            <ul>
+                <li>Examinează lamela preparată cu ajutorul obiectivului cu mărirea maximă.</li>
+                <li>Selectează metafazele în care cromozomii sunt clar separați (evitând cazurile cu cromatide extrem de depărtate post-tratamentul cu colchicină).</li>
+            </ul>
+            
+            <p><b>2. Trasarea și Măsurarea Cromozomilor:</b></p>
+            <ul>
+                <li>La lumina camerei clare, numără și trasează conturul cromozomilor din placa metafazică aleasă.</li>
+                <li>Măsoară dimensiunile cromozomilor folosind micrometrul ocular, după stabilirea unei echivalențe între scala acestuia și a micrometrului obiectiv (de exemplu, 10 gradații din micrometrul ocular pot corespunde la 8 gradații ale obiectivului, adică aproximativ 0,8 micrometri).</li>
+                <li>Dacă nu dispui de micrometre, poți măsura cromozomii pe desenul realizat cu ajutorul unei rigle.</li>
+            </ul>
+            
+            <p><b>3. Clasificarea și Notarea:</b></p>
+            <ul>
+                <li>Stabilește tipul morfologic al fiecărui cromozom și notează simbolul corespunzător lângă desen.</li>
+                <li>Fotografiază cromozomii din placa metafazică pentru documentație ulterioară.</li>
+                <li>Decupează cu foarfeca fiecare cromozom din desen sau fotografie, lăsând un spațiu de câțiva milimetri în jurul fiecăruia.</li>
+            </ul>
+            
+            <p><b>4. Împerecherea și Aranjarea în Cariotip:</b></p>
+            <ul>
+                <li>Împerechează cromozomii utilizând ca prim criteriu lungimea totală și poziția centromerului, iar ca al doilea criteriu raportul dintre brațe.</li>
+                <li>Alcătuiește cariotipul, lipind cromozomii în perechi după dimensiune și formă.</li>
+                <li>Asigură-te că aranjarea respectă tiparul cariotipului normal al speciei studiate:
+                    <ul>
+                        <li>Primul criteriu este ordinea descrescătoare a lungimii (măsurând ambele cromatide și luând media, incluzând regiunea centromerică, dar excluzând sateliții).</li>
+                        <li>Al doilea criteriu constă în gruparea cromozomilor în categorii morfologice, notate cu litere mari în ordine alfabetică.</li>
+                        <li>Ultimul pas este împerecherea cromozomilor omologi, notând fiecare pereche cu același număr.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h6><b>Atenționări</b></h6>
+            <ul>
+                <li>Aranjarea cromozomilor în cariotip se efectuează mai precis dacă se utilizează celule aflate într-o fază incipientă a metafazei, când brațele sunt mai puțin contractate.</li>
+                <li>Este esențial să pornești de la cunoștințele privind cariotipul normal al speciei pentru a identifica corect orice abateri citogenetice.</li>
+            </ul>
+            <div class="image-placeholder"><img src="a douazecea poza.jpeg"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selectează toate butoanele de expandare (dacă există)
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+            
+            // Adaugă un event listener pentru fiecare buton
+            toggleBtns.forEach(function(btn, index) {
+                // Dă fiecărui set de elemente un ID unic
+                const contentId = 'content-box-' + index;
+                
+                // Obține caseta de conținut corespunzătoare
+                const contentBox = btn.closest('.title-container').nextElementSibling;
+                
+                // Adaugă ID la caseta de conținut
+                contentBox.id = contentId;
+                
+                // Adaugă evenimentul de click
+                btn.addEventListener('click', function() {
+                    const targetBox = document.getElementById(contentId);
+                    
+                    if (targetBox.style.display === 'none') {
+                        targetBox.style.display = 'block';
+                        btn.textContent = '−';
+                    } else {
+                        targetBox.style.display = 'none';
+                        btn.textContent = '+';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
